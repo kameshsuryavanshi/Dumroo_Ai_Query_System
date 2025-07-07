@@ -255,8 +255,7 @@ Styled tables will show only the relevant, scoped data.
 
 ## 📜 License
 
-MIT License *(or replace with company-specific license)*
-
+MIT License 
 ---
 
 ## 📬 Contact
