@@ -1,36 +1,31 @@
-Here’s your cleaned README with all emojis removed and formatting kept intact:
 
----
 
 # Dumroo AI Query System
 
 ## Overview
 
-The **Dumroo AI Query System** is an intelligent admin panel built with **Streamlit**, **LangChain**, and **Google's Gemini (gemini-1.5-flash)**. It enables school administrators to query student performance data using simple natural language commands, with **role-based access control (RBAC)** that ensures users only see data relevant to their assigned **grade** and **region**.
+The **Dumroo AI Query System** is a Streamlit-based admin interface powered by **LangChain** and **Google Gemini (gemini-1.5-flash)**. It enables school administrators to query student performance data using natural language, with enforced **role-based access control (RBAC)** to restrict visibility by **grade** and **region**.
 
-Clean UI •
-Gemini-powered NLP •
-Fine-grained RBAC •
-Modular, extendable design
+The system is designed with a modular architecture to support extensibility, maintainability, and production-grade enhancements.
 
 ---
 
 ## Purpose
 
-This tool is designed for school administrators to:
+This system enables administrators to:
 
-* Ask questions like “Which students haven’t submitted their homework yet?” in plain English.
-* Filter student data by **grade (7–10)** and **region (North, South, East, West)**.
-* Automatically prompt for missing grade/region filters to ensure access restrictions.
-* Visualize responses in an intuitive, styled table format.
+* Query student data using natural language (e.g., “Which students have not submitted homework?”)
+* Enforce scoped access based on **grade (7–10)** and **region (North, South, East, West)**
+* Automatically handle missing filters through guided prompting
+* View results in structured, human-readable tabular format
 
 ---
 
 ## Target Audience
 
-* School administrators with limited data access scope
-* Developers extending or maintaining the system
-* Education stakeholders seeking insights from student data
+* School administrators with restricted data access
+* Engineers extending or maintaining the system
+* Stakeholders analyzing student performance data
 
 ---
 
@@ -57,205 +52,205 @@ dumroo-ai-query-system/
 
 ---
 
-## Features
+## Key Features
 
-* **Natural Language Querying**
-  Process queries like *"Which students haven’t submitted their homework yet?"* via LangChain + Gemini.
+### Natural Language Querying
 
-* **Role-Based Access Control (RBAC)**
-  Filter data based on the admin’s selected **grade** and **region**.
+Supports flexible queries via LangChain integrated with Gemini.
 
-* **Dynamic Prompting**
-  Prompts user to specify grade/region if not selected.
+### Role-Based Access Control (RBAC)
 
-* **Modern UI Design**
-  Custom blue-gray theme, responsive layout, and Dumroo branding.
+Applies strict filtering based on user-selected grade and region.
 
-* **Styled Data Tables**
-  Results are displayed using markdown-style tables with enhanced styling.
+### Dynamic Input Enforcement
 
-* **Robust Error Handling**
-  Invalid queries, file issues, and parsing problems are gracefully managed.
+Prompts users for missing access constraints before executing queries.
+
+### UI Layer
+
+Responsive Streamlit interface with a consistent theme and structured layout.
+
+### Data Presentation
+
+Outputs are rendered as clean, formatted tables for readability.
+
+### Error Handling
+
+Graceful handling of invalid queries, missing data, and runtime issues.
 
 ---
 
 ## Prerequisites
 
-* **Python**: Version 3.9 or higher
-* **Virtual Environment**: Recommended
-* **Google API Key**: Required to access Gemini (from Google AI Studio)
-* **Logo File**: Place `dumroo_ai_logo.png` in `data/` directory
+* Python 3.9+
+* Virtual environment (recommended)
+* Google API Key (Gemini access via Google AI Studio)
+* Dataset and branding assets in the `data/` directory
 
 ---
 
 ## Installation
 
-### 1. Clone the Repository
+### Clone Repository
 
 ```bash
 git clone <repository-url>
 cd dumroo-ai-query-system
 ```
 
-### 2. Set Up Virtual Environment
+### Setup Environment
 
 ```bash
 python -m venv venv
+
 # Windows
-.\venv\Scripts\activate
+venv\Scripts\activate
+
 # Linux/Mac
 source venv/bin/activate
 ```
 
-### 3. Install Dependencies
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Set Google API Key
+### Configure API Key
 
-**Option A: Environment Variable**
+**Environment Variable**
 
 ```bash
 # Windows
-set GOOGLE_API_KEY=your-google-api-key
+set GOOGLE_API_KEY=your-key
 
 # Linux/Mac
-export GOOGLE_API_KEY=your-google-api-key
+export GOOGLE_API_KEY=your-key
 ```
 
-**Option B: Update config.py**
+**OR update `config.py`**
 
 ```python
-GOOGLE_API_KEY = "your-google-api-key"
+GOOGLE_API_KEY = "your-key"
 ```
 
 ---
 
 ## Dataset
 
-* **File**: `data/students.csv`
-* **Fields**:
+**File:** `data/students.csv`
 
-  * `student_id`: Unique ID (e.g., S001)
-  * `student_name`: Indian-origin names (e.g., Ayesha Fernandes)
-  * `grade`: Integer (7–10)
-  * `class`: A, B, or C
-  * `homework_status`: "Completed", "Incomplete", "Missing"
-  * `quiz_score`: Integer (0–100)
-  * `quiz_date`: `DD-MM-YYYY` format
-  * `region`: North, South, East, West
+**Schema:**
 
-220 student entries across 4 grades and 4 regions
+* `student_id`: Unique identifier
+* `student_name`: Student name
+* `grade`: Integer (7–10)
+* `class`: Section (A/B/C)
+* `homework_status`: Completed / Incomplete / Missing
+* `quiz_score`: Integer (0–100)
+* `quiz_date`: DD-MM-YYYY
+* `region`: North / South / East / West
 
 ---
 
-## Running the App
+## Running the Application
 
 ```bash
 streamlit run app.py
 ```
 
-Then open [http://localhost:8501](http://localhost:8501) in your browser.
+Access the application at:
+[http://localhost:8501](http://localhost:8501)
 
 ---
 
-## Usage Guide
+## Usage
 
-### 1. Select Role Scope
+### Step 1: Define Access Scope
 
-Choose a **grade** and **region** from the sidebar.
-If missing, the system will prompt for it before processing queries.
+Select **grade** and **region** from the sidebar.
 
-### 2. Type a Natural Query
+### Step 2: Submit Query
 
-Examples:
+Example queries:
 
-* *“Which students haven’t submitted their homework yet?”*
-* *“Show me performance data for Grade 8 from last week”*
-* *“List all upcoming quizzes scheduled for next week”*
+* “Which students have not submitted homework?”
+* “Show Grade 8 performance for last week”
+* “List upcoming quizzes”
 
-### 3. View the Results
+### Step 3: Review Output
 
-Styled tables will show only the relevant, scoped data.
+Results are displayed as structured tables filtered by access scope.
 
 ---
 
 ## Example Queries
 
-* *"Which students have submitted their homework?"*
-* *"List Grade 9 students who missed the last quiz"*
-* *"Show quiz scores of South region for this month"*
+* “List Grade 9 students who missed the last quiz”
+* “Show quiz scores for South region this month”
+* “Which students completed their homework?”
 
 ---
 
-## Architecture
+## System Architecture
 
-| Layer           | Description                                                    |
-| --------------- | -------------------------------------------------------------- |
-| **Frontend**    | Streamlit (`app.py`) + custom theme (`.streamlit/config.toml`) |
-| **Query Agent** | LangChain + Gemini in `agents/langchain_agent.py`              |
-| **RBAC Logic**  | Grade + Region filter in `rbac/rbac.py`                        |
-| **Data Loader** | Reads and parses CSV in `utils/data_loader.py`                 |
-| **Config**      | API keys and settings in `config.py`                           |
+| Layer          | Description                               |
+| -------------- | ----------------------------------------- |
+| Frontend       | Streamlit UI (`app.py`)                   |
+| Query Engine   | LangChain + Gemini                        |
+| Access Control | RBAC logic (`rbac/rbac.py`)               |
+| Data Layer     | CSV ingestion (`utils/data_loader.py`)    |
+| Configuration  | API keys and runtime config (`config.py`) |
 
 ---
 
 ## UI Design
 
-* **Primary Color**: Blue `#3B82F6`
-* **Background**: Light Gray `#F8FAFC`
-* **Sidebar**: `#E2E8F0`
-* **Text**: Navy `#0E1E40`
-* **Font**: Helvetica Neue
-* **Logo**: `data/dumroo_ai_logo.png`
+* Primary Color: `#3B82F6`
+* Background: `#F8FAFC`
+* Sidebar: `#E2E8F0`
+* Text: `#0E1E40`
+* Font: Helvetica Neue
 
 ---
 
 ## Error Handling
 
-| Scenario                 | Behavior                                     |
-| ------------------------ | -------------------------------------------- |
-| Missing `students.csv`   | Error message with troubleshooting steps     |
-| Missing `GOOGLE_API_KEY` | Prompt to set environment or edit config.py  |
-| Unrecognized query       | User-friendly fallback message               |
-| Pandas error             | Logs sanitized query + terminal debug output |
+| Scenario               | Behavior                           |
+| ---------------------- | ---------------------------------- |
+| Missing dataset        | Clear error with remediation steps |
+| Missing API key        | Prompt for configuration           |
+| Invalid query          | Fallback response                  |
+| Data processing errors | Logged for debugging               |
 
 ---
 
-## Maintenance & Extension
+## Maintenance and Extension
 
-* **Update Dataset**: Modify `data/students.csv` — schema must match original
-* **Add New Query Types**: Extend `langchain_agent.py` logic
-* **Role Enhancements**: Adjust filters in `rbac.py`
-* **Debugging**: Use logs printed in terminal
+* Update dataset via `data/students.csv` (schema must remain consistent)
+* Extend query capabilities in `langchain_agent.py`
+* Enhance RBAC logic for finer-grained control (e.g., class-level)
+* Use logs for debugging and tracing execution
 
 ---
 
 ## Troubleshooting
 
-* **Logo not displaying?**
-  Check file exists at `data/dumroo_ai_logo.png`
-
-* **Query not understood?**
-  Ensure proper grade/region is selected and query is specific
-
-* **Gemini not responding?**
-  Check API key, rate limits, or service availability
+* **Logo not visible**: Verify file path `data/dumroo_ai_logo.png`
+* **Query issues**: Ensure valid scope (grade/region) and clear input
+* **Gemini failures**: Validate API key and service availability
 
 ---
 
 ## Future Enhancements
 
-* Support aggregate queries like averages and comparisons
-* Add user authentication for secure access
-* Allow uploading new datasets dynamically
-* Enhance visuals with charts and analytics
+* Aggregation queries (averages, trends, comparisons)
+* User authentication and authorization
+* Dynamic dataset uploads
+* Advanced visualizations (charts, dashboards)
 
 ---
 
 ## License
 
 MIT License
-
