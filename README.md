@@ -4,7 +4,7 @@
 
 ## Overview
 
-The **Dumroo AI Query System** is a Streamlit-based admin interface powered by **LangChain** and **Google Gemini (gemini-1.5-flash)**. It enables school administrators to query student performance data using natural language, with enforced **role-based access control (RBAC)** to restrict visibility by **grade** and **region**.
+The **Dumroo AI Query System** is a Streamlit-based admin interface powered by **LangChain** and **Google Gemini **. It enables school administrators to query student performance data using natural language, with enforced **role-based access control (RBAC)** to restrict visibility by **grade** and **region**.
 
 The system is designed with a modular architecture to support extensibility, maintainability, and production-grade enhancements.
 
